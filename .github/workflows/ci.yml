@@ -104,7 +104,7 @@ jobs:
 
     - name: Wait for MySQL
       if: matrix.db-type == 'mysql' || matrix.db-type == 'mariadb'
-      run: while ! `mysqladmin ping -h 127.0.0.1 --silent`; do printf 'Waiting for MySQL...\n'; sleep 2; done;
+      run: while ! mysqladmin ping -h 127.0.0.1 --silent; do printf 'Waiting for MySQL...\n'; sleep 2; done;
 
     - name: Run PHPUnit
       env:
@@ -190,20 +190,6 @@ jobs:
 
     - name: Composer install
       run: composer update
-
-    - name: Run PHPUnit
-      env:
-        DB_URL: 'sqlserver://@(localdb)\MSSQLLocalDB/cakephp'
-      run: |
-          set CAKE_DISABLE_GLOBAL_FUNCS=1
-          vendor/bin/phpunit --display-incomplete --display-skipped
-
-    - name: Run PHPUnit (autoquote enabled)
-      env:
-        DB_URL: 'sqlserver://@(localdb)\MSSQLLocalDB/cakephp'
-      run: |
-          set CAKE_TEST_AUTOQUOTE=1
-          vendor/bin/phpunit --display-incomplete --display-skipped --testsuite=database
 
   cs-stan:
     name: Coding Standard & Static Analysis

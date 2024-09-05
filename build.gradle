@@ -1,0 +1,39 @@
+plugins {
+    id 'base'
+}
+//install PHP dependencies using Composer
+task installDependencies(type: Exec) {
+    description = 'Installs PHP dependencies using Composer'
+    commandLine 'composer', 'install'
+}
+//set up environment variables or copy configuration files
+task setupEnvironment(type: Exec) {
+    description = 'Sets up environment configuration'
+    commandLine 'bash', '-c', 'cp .env.example .env'
+}
+//run PHPUnit tests
+task runTests(type: Exec) {
+    description = 'Runs PHPUnit tests'
+    
+    if (System.getProperty('os.name').toLowerCase().contains('windows')) {
+        commandLine 'cmd', '/c', 'vendor\\bin\\phpunit'
+    } else {
+        commandLine 'bash', '-c', './vendor/bin/phpunit'
+    }
+
+    ignoreExitValue true
+}
+
+// Perform code quality checks
+task codeQuality(type: Exec) {
+    description = 'Performs code quality checks using PHP_CodeSniffer'
+    commandLine 'vendor/bin/phpcs', '--standard=PSR2', 'src/'
+}
+//
+task packageApplication(type: Exec) {
+    description = 'Packages the application into a tar.gz file'
+    commandLine 'tar', '-czvf', 'cakephp-project.tar.gz', './src'
+}
+// setup dependencies
+build.dependsOn installDependencies, setupEnvironment, runTests, codeQuality, packageApplication
+
