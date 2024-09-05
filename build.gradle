@@ -1,5 +1,5 @@
 plugins {
-    id 'base'
+    id 'base';;;
 }
 //install PHP dependencies using Composer
 task installDependencies(type: Exec) {
