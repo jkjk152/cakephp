@@ -43,7 +43,7 @@ composer require cakephp/cakephp
 
 For details on the (minimum/maximum) PHP version see [version map](https://github.com/cakephp/cakephp/wiki#version-map).
 
-## Running Tests
+## Running Tests....
 
 Assuming you have PHPUnit installed system wide using one of the methods stated
 [here](https://phpunit.de/manual/current/en/installation.html), you can run the
