@@ -24,7 +24,7 @@ task runTests(type: Exec) {
     ignoreExitValue true
 }
 
-// Perform code quality checks
+// Perform the code quality checks
 task codeQuality(type: Exec) {
     description = 'Performs code quality checks using PHP_CodeSniffer'
     commandLine 'vendor/bin/phpcs', '--standard=PSR2', 'src/'
