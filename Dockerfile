@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd mbstring pdo pdo_mysql zip intl
 
-# Enable Apache mod_rewrite for CakePHP
+# Enable Apache mod_rewrite for CakePHP.....
 RUN a2enmod rewrite
 
 # Set the working directory
