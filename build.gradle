@@ -3,7 +3,7 @@ plugins {
 }
 //install PHP dependencies using Composer
 task installDependencies(type: Exec) {
-    description = 'Installs PHP dependencies using Composer'
+    description = 'Installs PHP dependencies using Composer haha'
     commandLine 'composer', 'install'
 }
 //set up environment variables or copy configuration files
